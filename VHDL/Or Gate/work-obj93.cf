@@ -1,0 +1,7 @@
+v 3
+file . "or3_tb.vhdl" "20240808092304.000" "20240808154000.875":
+  entity or3_tb at 1( 0) + 0 on 37;
+  architecture or3_tb_arch of or3_tb at 7( 80) + 0 on 38;
+file . "or3.vhdl" "20240808092142.000" "20240808154000.860":
+  entity or3 at 1( 0) + 0 on 35;
+  architecture or3_arch of or3 at 10( 137) + 0 on 36;
