@@ -17,7 +17,7 @@ int main(int argc, char const *argv[])
 {
     int n;
     printf("Enter the number of terms: ");
-    scanf("%d", &n);
+    scanf("%d", &n); 
 
     int arr[n];
     printf("Enter the elements of the array:\n");
