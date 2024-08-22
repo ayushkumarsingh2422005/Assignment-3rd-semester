@@ -1,0 +1,10 @@
+v 3
+file . "tb_fullsubtractor.vhdl" "20240822104228.000" "20240822161350.155":
+  entity tb_fullsubtractor at 1( 0) + 0 on 15;
+  architecture behavior of tb_fullsubtractor at 7( 109) + 0 on 16;
+file . "halfsubtractor.vhdl" "20240822104246.000" "20240822161350.121":
+  entity halfsubtractor at 1( 0) + 0 on 11;
+  architecture rtl of halfsubtractor at 13( 248) + 0 on 12;
+file . "fullsubtractor.vhdl" "20240822104210.000" "20240822161350.138":
+  entity fullsubtractor at 1( 0) + 0 on 13;
+  architecture rtl of fullsubtractor at 14( 279) + 0 on 14;

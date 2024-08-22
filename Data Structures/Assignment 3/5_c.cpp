@@ -58,7 +58,7 @@ int main(int argc, char const *argv[])
     struct realtype number3;
     cout << "Enter the real part of 1st decimal number : ";
     cin >> number1.left;
-    // cout << deigitcount(number1.left);
+    
     cout << "Enter the real part of 2nd decimal number : ";
     cin >> number2.left;
     cout << "Enter the decimal part of 1st decimal number : ";

@@ -1,0 +1,10 @@
+v 3
+file . "tb_four_bit_adder.vhdl" "20240822104652.000" "20240822162327.883":
+  entity tb_four_bit_adder at 1( 0) + 0 on 27;
+  architecture behavior of tb_four_bit_adder at 7( 109) + 0 on 28;
+file . "fulladder.vhdl" "20240822105204.000" "20240822162327.860":
+  entity fulladder at 1( 0) + 0 on 23;
+  architecture rtl of fulladder at 14( 269) + 0 on 24;
+file . "four_bit_adder.vhdl" "20240822104628.000" "20240822162327.872":
+  entity four_bit_adder at 1( 0) + 0 on 25;
+  architecture rtl of four_bit_adder at 14( 336) + 0 on 26;
