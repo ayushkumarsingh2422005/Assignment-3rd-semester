@@ -40,32 +40,79 @@ void printLinkedList(struct Node* head) {
 
 struct Node* reverseLinkedList(struct Node* head) {
     struct Node* temp = head;
-    struct Node* result = new Node();
-    result->data = temp->data;  // Initialize result with the first node's data
-    result->prev = NULL;
-    result->next = NULL;
-    
-    struct Node* tail = result;  // Keep track of the end of the reversed list
-    
-    while (temp->next != NULL) {
-        struct Node* newNode = new Node();
-        newNode->data = temp->next->data;
-        
-        newNode->next = result->prev;
-        newNode->prev = result;
+    struct Node* result = NULL;
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = temp->data;
+    newNode->next = NULL;
+    newNode->prev = NULL;
+    result = newNode;
+    temp = temp->next;
+    while (temp != NULL) {
+        struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+        newNode->data = temp->data;
         result->prev = newNode;
-        
+        newNode->next = result;
+        newNode->prev = NULL;
+        result = result->prev;
         temp = temp->next;
-        result = newNode;
     }
-    
-    return tail;  // Return the head of the reversed list
+    return result;
 }
+struct Node* insertAtFirst(struct Node* head, int data) {
+    struct Node* tempNode = (struct Node*)malloc(sizeof(struct Node));
+    tempNode->data = data;
+    tempNode->next = head;
+    tempNode->prev = NULL;
+    head->prev = tempNode;
+    head = tempNode;
+    return head;
+}
+Node* insertBetween(Node* head, int data, int n) {
+    Node* tempNode = (Node*)malloc(sizeof(Node));
+    Node* temp = head;
+    tempNode->data = data;
+    tempNode->next = NULL;
+    tempNode->prev = NULL;
+    int pos = 0;
+    while (temp->next != NULL) {
+        if (n == pos) {
+            tempNode->prev = temp->prev;
+            temp->prev->next = tempNode;
+            temp->prev = tempNode;
+            tempNode->next = temp;
+            return head;
+        }
+        temp = temp->next;
+        pos++;
+    }
+    return head;
+
+}
+// void deletion(Node* head){
+//     Node* temp = head;
+//     head=head->next;
+//     head->prev=NULL;
+//     temp->next=NULL;
+//     delete temp;
+//     // return head;
+// }
+Node* update(Node* head){
+    int pos=0;
+    while (){
+        if
+    }
+
+}
+
 
 int main(int argc, char const* argv[]) {
     struct Node* head = createLinedList();
-    struct Node* reversed = reverseLinkedList(head);
+    // head = insertBetween(head, 10, 3);5
+    // deletion(head);
+    Node *temp = head;
+    head = head->next;
+    delete temp;
     printLinkedList(head);
-    printLinkedList(reversed);
+    // cout << temp->data;
     return 0;
 }

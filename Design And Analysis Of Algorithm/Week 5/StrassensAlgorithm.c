@@ -12,7 +12,7 @@ int main() {
     }
     printf("\nThe second matrix is: ");
     for (i = 0; i < 2; i++) {
-        printf("\n");
+        +printf("\n");
         for (j = 0; j < 2; j++) printf("%d\t", y[i][j]);
     }
     m1 = (x[0][0] + x[1][1]) * (y[0][0] + y[1][1]);
