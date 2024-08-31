@@ -13,7 +13,7 @@ struct node* linkedList(int arr[], int n) {
         temp->next = new node{arr[i], nullptr};
         temp = temp->next;
     }
-    // temp->next = head;
+    temp->next = head;
     return head;
 }
 
