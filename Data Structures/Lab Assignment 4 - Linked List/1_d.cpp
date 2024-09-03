@@ -24,10 +24,8 @@ struct node* insertBefore(struct node* head, int before, int data) {
         struct node* newNode = new node{data, head};
         return newNode;
     }
-
     struct node* temp1 = head->next;
     struct node* temp2 = head;
-
     while (temp1 != nullptr) {
         if (temp1->data == before) {
             struct node* newNode = new node{data, temp1};
