@@ -60,7 +60,6 @@ struct Stack {
 };
 
 int evaluatePostfix(string postfix[], int depth) {
-    // int index = 0;
     Stack st;
     for (int i = 0; i < depth; i++) {
         string s = postfix[i];

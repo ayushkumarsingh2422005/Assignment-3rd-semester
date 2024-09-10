@@ -60,16 +60,16 @@ struct Stack {
     }
 };
 
-// int main() {
-//     Stack stack;
-//     // stack.push('a');
-//     // stack.push('b');
-//     // stack.push('c');
-//     // stack.push('d');
-//     stack.view();
-//     stack.pop();
-//     cout << stack.pop();
-//     stack.view();
-//     cout << stack.top;
-//     return 0;
-// }
+int main() {
+    Stack stack;
+    stack.push('a');
+    stack.push('b');
+    stack.push('c');
+    stack.push('d');
+    stack.view();
+    stack.pop();
+    cout << stack.pop();
+    stack.view();
+    cout << stack.top;
+    return 0;
+}
