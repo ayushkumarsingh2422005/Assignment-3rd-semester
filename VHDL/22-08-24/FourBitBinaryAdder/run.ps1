@@ -1,4 +1,4 @@
-# Compile the VHDL files
+ghdl -a --work=work halfadder.vhdl
 ghdl -a --work=work fulladder.vhdl
 ghdl -a --work=work four_bit_adder.vhdl
 ghdl -a --work=work tb_four_bit_adder.vhdl

@@ -13,9 +13,6 @@ node *create(int x) {
     newnode->left = NULL;
     newnode->right = NULL;
     return newnode;
-    root->data = x;
-    root->left = NULL;
-    root->right = NULL;
 }
 node *insert(node *root, int x) {
     if (root == NULL) {

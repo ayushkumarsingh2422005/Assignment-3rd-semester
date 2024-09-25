@@ -97,6 +97,11 @@ int main(int argc, char const* argv[]) {
     stack2.push("c");
     stack2.push("c");
 
+    cout << "Stack 1: ";
+    stack1.view();
+    cout << "Stack 2: ";
+    stack2.view();
+    cout << "Merged Stack Size: " << stack1.size + stack2.size << endl;
     string* merged = mergeStack(stack1, stack2);
     cout << "Merged Stack: ";
     for (int i = 0; i < stack1.size + stack2.size; i++) {
