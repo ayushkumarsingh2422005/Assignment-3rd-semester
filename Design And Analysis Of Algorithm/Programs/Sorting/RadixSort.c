@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 int maxElement(int arr[], int size) {
     int max = arr[0];
     for (int i = 1; i < size; i++) {
@@ -42,6 +41,5 @@ int main(int argc, char const* argv[]) {
     for (int i = 0; i < size; i++) {
         printf("%d ", arr[i]);
     }
-
     return 0;
 }

@@ -63,7 +63,7 @@ struct Heap {
         return temp;
     }
 
-    // Helper function to restore heap property downwards
+    // Helper function to restore heap property downwards (hipify function)
     void downheap(int index) {
         int min = index;
         int leftChild = left(index);
