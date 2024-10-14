@@ -1,100 +1,52 @@
 #include <iostream>
-#include <limits>
 using namespace std;
 
 struct Node {
     string data;
-    Node* next;  // Use `Node*` instead of `Node*`
+    Node* next;
+    Node(string d) : data(d), next(nullptr) {}
 };
 
-struct Queue {
+class Queue {
    private:
-    Node* start;
-    Node* end;
-    Node* insert(Node* start, string data) {
-        if (start == NULL) {
-            Node* temp = new Node{data, NULL};
-            end = temp;
-            return temp;
-        }
-        Node* temp = new Node{data, NULL};
-        start->next = temp;
-        start = start->next;
-        return start;
-    }
-
-    Node* deleteNode(Node* end) {
-        if (end->next == NULL) {
-            delete end;
-            return NULL;
-        }
-        Node* delNode = end;
-        end = end->next;
-        delete delNode;
-        return end;
-    }
+    Node *start, *end;
 
    public:
-    string rear;
-    string front;
-
-    Queue() {
-        start = NULL;
-        end = NULL;
-        rear = "";
-        front = "";
-    }
+    Queue() : start(nullptr), end(nullptr) {}
 
     void enque(string data) {
-        start = insert(start, data);
-        rear = start->data;
-        front = end->data;
+        Node* temp = new Node(data);
+        if (!start) end = temp;
+        else start->next = temp;
+        start = temp;
     }
-    string deque() {
-        if (end == NULL) {
-            front = "";
-            return front;
-        } else {
-            string data = end->data;
-            end = deleteNode(end);
-            if (end == NULL) {
-                front = "";
-            } else {
-                front = end->data;
-            }
-            return data;
-        }
-    }
-    bool isEmpty() { return end == NULL; }
 
-    void helper(Node* node) {
-        if (node == NULL) {
-            // cout << endl;
-            return;
-        }
-        helper(node->next);
-        if (node->next == NULL) {
-            cout << node->data;
-        } else {
-            cout << " -> " << node->data;
-        }
-    }
-    void view() {
+    string deque() {
+        if (!end) return "";
+        string data = end->data;
         Node* temp = end;
-        helper(temp);
+        end = end->next;
+        delete temp;
+        return data;
+    }
+
+    bool isEmpty() { return !end; }
+
+    void view() {
+        for (Node* temp = end; temp; temp = temp->next)
+            cout << (temp == end ? "" : " -> ") << temp->data;
         cout << endl;
     }
 };
 
-int main(int argc, char const* argv[]) {
-    Queue queue;
-    queue.enque("apple");
-    queue.enque("banana");
-    queue.enque("orange");
-    queue.enque("maroon");
-    queue.view();
-    cout << queue.deque() << endl;
-    cout << queue.rear << endl;
-    cout << queue.front << endl;
+int main() {
+    Queue q;
+    q.enque("apple");
+    q.enque("banana");
+    q.enque("orange");
+    q.enque("maroon");
+    q.view();
+    cout << q.deque() << endl;
+    q.view();
     return 0;
 }

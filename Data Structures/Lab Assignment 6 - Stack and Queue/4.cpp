@@ -73,14 +73,12 @@ string* mergeStack(Stack& stack1, Stack& stack2) {
     int totalSize = stack1.size + stack2.size;
     string* mergedStack = new string[totalSize];
     int i = 0;
-
     while (!stack1.isEmpty()) {
         mergedStack[i++] = stack1.pop();
     }
     while (!stack2.isEmpty()) {
         mergedStack[i++] = stack2.pop();
     }
-
     return mergedStack;
 }
 

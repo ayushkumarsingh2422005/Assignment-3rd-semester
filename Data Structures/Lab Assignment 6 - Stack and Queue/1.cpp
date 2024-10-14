@@ -1,75 +1,59 @@
 #include <iostream>
-#include <limits>
 using namespace std;
 
 struct Node {
-    char data;
+    string data;
     Node* next;
+    Node(string d, Node* n = nullptr) : data(d), next(n) {}
 };
 
 struct Stack {
-   private:
     Node* head;
-    Node* insertBeforeFirst(Node* head, char data) {
-        Node* temp = new Node{data, nullptr};
-        temp->next = head;
-        return temp;
+    string top;
+
+    Stack() : head(nullptr), top("") {}
+
+    void push(string data) {
+        head = new Node(data, head);
+        top = data;
     }
-    Node* deleteFirst(Node* head) {
-        if (head == NULL) {
-            return head;
-        }
+
+    string pop() {
+        if (!head) return "";
+        string data = head->data;
         Node* temp = head;
         head = head->next;
         delete temp;
-        return head;
+        top = head ? head->data : "";
+        return data;
     }
 
-   public:
-    char top;
-    Stack() {
-        head = NULL;
-        top = '\0';
-    }
-    void push(char data) {
-        head = insertBeforeFirst(head, data);
-        top = data;
-    }
-    char pop() {
-        if (head == NULL) {
-            top = '\0';
-            return top;
-        } else {
-            char data = head->data;
-            head = deleteFirst(head);
-            if (head == NULL) {
-                top = '\0';
-            } else {
-                top = head->data;
-            }
-            return data;
-        }
-    }
-    bool isEmpty() { return head == NULL; }
+    bool isEmpty() { return !head; }
+
     void view() {
-        Node* temp = head;
-        while (temp != NULL) {
-            cout << temp->data << endl;
-            temp = temp->next;
-        }
+        for (Node* temp = head; temp; temp = temp->next)
+            cout << temp->data << ' ';
+        cout << endl;
     }
 };
 
+
 // int main() {
 //     Stack stack;
+
+//     cout << "Pushing elements: a, b, c, d" << endl;
 //     stack.push('a');
 //     stack.push('b');
 //     stack.push('c');
 //     stack.push('d');
+//     cout << "Current stack: ";
 //     stack.view();
-//     stack.pop();
-//     cout << stack.pop();
+
+//     cout << "Popping two elements..." << endl;
+//     cout << "Popped: " << stack.pop() << ", " << stack.pop() << endl;
+//     cout << "Current stack: ";
 //     stack.view();
-//     cout << stack.top;
+
+//     cout << "Top of the stack: " << stack.top << endl;
 //     return 0;
 // }
