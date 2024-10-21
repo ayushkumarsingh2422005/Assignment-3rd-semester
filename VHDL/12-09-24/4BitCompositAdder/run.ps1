@@ -8,3 +8,5 @@ ghdl -e --work=work tb_four_bit_composite_adder
 
 # Run the simulation and generate a VCD file
 ghdl -r tb_four_bit_composite_adder --stop-time=60ns --vcd=output.vcd
+
+gtkwave output.vcd

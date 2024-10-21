@@ -78,7 +78,7 @@ int main() {
     queue.enque(6);
     
     // Full queue, this will not insert
-    queue.enque(7); 
+    queue.enque(7);
     
     queue.deque();
     queue.deque();

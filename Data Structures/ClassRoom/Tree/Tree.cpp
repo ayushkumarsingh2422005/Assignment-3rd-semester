@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 using namespace std;
 
 struct Node {
@@ -38,9 +39,6 @@ Node* insertData(Node* root, int data) {
 
 void preorder(Node* root) {
     if (root == NULL) {
-        int i = 1;
-        cout << i;
-        i++;
         return;
     }
     cout << root->data << " ";
@@ -107,6 +105,53 @@ int countTwoDegree(Node* root) {
     int right = countTwoDegree(root->right);
     return left + right + count;
 }
+void levelOrder(Node* root) {
+    queue<Node*> que;
+    if (root == NULL) {
+        return;
+    }
+
+    que.push(root);
+    while (!que.empty()) {
+        Node* tempNode = que.front();
+        que.pop();
+        cout << tempNode->data << " ";
+        if (tempNode->left != NULL) {
+            que.push(tempNode->left);
+        }
+        if (tempNode->right != NULL) {
+            que.push(tempNode->right);
+        }
+    }
+}
+Node* search(Node* root, int data) {
+    Node* temp = root;
+    while (temp != NULL) {
+        if (data == temp->data) {
+            return temp;
+            break;
+        }
+        if (data > temp->data) {
+            temp = temp->right;
+        } else {
+            temp = temp->left;
+        }
+    }
+    return NULL;
+}
+Node* deleteNodePre(Node* root, int data) {
+    Node* temp = search(root, data);
+    if (temp == NULL) return root;
+    Node* temp2 = temp;
+    if (temp2->right != NULL) temp2 = temp2->right;
+    while (temp2->left->left != NULL) {
+        temp2 = temp2->left;
+    }
+    temp->data = temp2->left->data;
+    delete(temp2->left);
+    temp2->left = NULL;
+    return root;
+}
 int main() {
     Node* root = createNode(100);
     root = insertData(root, 200);
@@ -115,6 +160,8 @@ int main() {
     root = insertData(root, 300);
     root = insertData(root, 20);
     root = insertData(root, 70);
+    // root = insertData(root, 120);
+    // root = insertData(root, 110);
     // root = insertData(root, 1000);
 
     // Preorder Traversal
@@ -132,6 +179,11 @@ int main() {
     inorder(root);
     cout << endl;
 
+    // LevelOrder Traversal
+    cout << "LevelOrder Traversal: ";
+    levelOrder(root);
+    cout << endl;
+
     // level count
     cout << "Level Count: ";
     cout << level(root) << endl;
@@ -147,6 +199,10 @@ int main() {
     // two count
     cout << "Two Degree Count: ";
     cout << countTwoDegree(root) << endl;
+
+    deleteNodePre(root, 100);
+    cout << "LevelOrder Traversal: ";
+    levelOrder(root);
 
     return 0;
 }

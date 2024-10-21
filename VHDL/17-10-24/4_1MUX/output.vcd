@@ -1,0 +1,91 @@
+$date
+  Thu Oct 17 17:28:59 2024
+$end
+$version
+  GHDL v0
+$end
+$timescale
+  1 fs
+$end
+$var reg 1 ! i0 $end
+$var reg 1 " i1 $end
+$var reg 1 # i2 $end
+$var reg 1 $ i3 $end
+$var reg 1 % c0 $end
+$var reg 1 & c1 $end
+$var reg 1 ' s $end
+$scope module uut $end
+$var reg 1 ( i0 $end
+$var reg 1 ) i1 $end
+$var reg 1 * i2 $end
+$var reg 1 + i3 $end
+$var reg 1 , c0 $end
+$var reg 1 - c1 $end
+$var reg 1 . s $end
+$upscope $end
+$enddefinitions $end
+#0
+1!
+0"
+0#
+0$
+0%
+0&
+1'
+1(
+0)
+0*
+0+
+0,
+0-
+1.
+#10000000
+0!
+1%
+0'
+0(
+1,
+0.
+#20000000
+1"
+1)
+#30000000
+1#
+0%
+1&
+1'
+1*
+0,
+1-
+1.
+#40000000
+1!
+1%
+0'
+1(
+1,
+0.
+#50000000
+0"
+0#
+1$
+1'
+0)
+0*
+1+
+1.
+#60000000
+0!
+1"
+1#
+0$
+0%
+0&
+0'
+0(
+1)
+1*
+0+
+0,
+0-
+0.

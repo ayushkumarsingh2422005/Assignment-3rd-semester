@@ -1,10 +1,13 @@
 #include <iostream>
+#include <cstdlib>
 using namespace std;
 
 struct Node {
     int data;
     struct Node* next;
 };
+
+// Function to create a circular linked list from an array
 struct Node* circularLinkedList(int arr[], int size) {
     struct Node* head = (struct Node*)malloc(sizeof(struct Node));
     head->data = arr[0];
@@ -20,104 +23,170 @@ struct Node* circularLinkedList(int arr[], int size) {
     temp->next = head;
     return head;
 }
-void printLinkedList(struct Node* head) {
-    struct Node* temp = head;
-    do {
-        cout << temp->data << " ";
-        temp = temp->next;
-    } while (temp != head);
-}
-struct Node* insertFirst(struct Node* head, int data) {
-    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
-    newNode->data = data;
+
+// Function to insert a node at the beginning of the list
+void insertAtBeginning(Node*& head, int value) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    newNode->data = value;
     newNode->next = head;
-    struct Node* temp = head;
+    Node* temp = head;
+    
     while (temp->next != head) {
         temp = temp->next;
     }
     temp->next = newNode;
     head = newNode;
-    return head;
 }
-struct Node* insert(struct Node* head, int index, int data) {
-    if (index == 0) {
-        return insertFirst(head, data);
-    }
-    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
-    newNode->data = data;
-    newNode->next = NULL;
-    struct Node* temp = head;
-    for (int i = 0; i < index - 1; i++) {
-        temp = temp->next;
-    }
-    newNode->next = temp->next;
-    temp->next = newNode;
-    return head;
-}
-struct Node* deleteFirst(struct Node* head) {
-    if (head == NULL) {
-        return NULL;
-    }
-    struct Node* temp = head;
+
+// Function to insert a node at the end of the list
+void insertAtEnd(Node*& head, int value) {
+    Node* newNode = (Node*)malloc(sizeof(Node));
+    newNode->data = value;
+    newNode->next = head;
+    
+    Node* temp = head;
     while (temp->next != head) {
         temp = temp->next;
     }
-    temp->next = head->next;
-    return temp->next;
+    temp->next = newNode;
 }
 
-int search(struct Node* head, int data) {
-    struct Node* temp = head;
+// Function to delete a node at the beginning of the list
+void deleteAtBeginning(Node*& head) {
+    if (head == NULL) return;
+    Node* temp = head;
+    
+    Node* last = head;
+    while (last->next != head) {
+        last = last->next;
+    }
+    
+    head = head->next;
+    last->next = head;
+    free(temp);
+}
+
+// Function to traverse and print the circular linked list
+void traverse(Node* head) {
+    if (head == NULL) return;
+    Node* temp = head;
     do {
-        if (temp->data == data) {
-            return 1;
+        cout << temp->data << " ";
+        temp = temp->next;
+    } while (temp != head);
+    cout << endl;
+}
+
+// Function to search an element in the circular linked list
+bool search(Node* head, int key) {
+    Node* temp = head;
+    do {
+        if (temp->data == key) return true;
+        temp = temp->next;
+    } while (temp != head);
+    return false;
+}
+
+// Function to sort the circular linked list
+void sortList(Node* head) {
+    if (head == NULL) return;
+    Node* current = head;
+    Node* index = NULL;
+    int temp;
+    do {
+        index = current->next;
+        while (index != head) {
+            if (current->data > index->data) {
+                temp = current->data;
+                current->data = index->data;
+                index->data = temp;
+            }
+            index = index->next;
+        }
+        current = current->next;
+    } while (current->next != head);
+}
+
+// Function to update a node value
+void update(Node* head, int oldValue, int newValue) {
+    Node* temp = head;
+    do {
+        if (temp->data == oldValue) {
+            temp->data = newValue;
+            return;
         }
         temp = temp->next;
     } while (temp != head);
-    return 0;
+    cout << "Value " << oldValue << " not found!" << endl;
 }
 
-struct Node* update(struct Node* head, int data, int index) {
-    if (head == NULL) {
-        return head;
-    }
-    struct Node* temp = head;
-    for (int i = 0; i < index - 1; i++) {
-        temp = temp->next;
-    }
-    temp->data = data;
-    return head;
-}
-void swap(struct Node* a, struct Node* b) {
-    int temp = a->data;
-    a->data = b->data;
-    b->data = temp;
-}
-
-struct Node* sort(struct Node* head) {
-    if (head == NULL || head->next == head) return head;
-    struct Node* end = NULL;
-    int swapped;
-    do {
-        swapped = 0;
-        struct Node* current = head;
-        while (current->next != end && current->next != head) {
-            if (current->data > current->next->data) {
-                swap(current, current->next);
-                swapped = 1;
-            }
-            current = current->next;
-        }
-        end = current;
-    } while (swapped);
-    return head;
-}
-
-int main(int argc, char const* argv[]) {
-    int arr[] = {1, 55, 2, 56, 1, 2, 3, 45};
+int main() {
+    Node* head = NULL;
+    int choice, value, searchValue, oldValue, newValue;
+    int arr[] = {5, 12, 7, 9};
     int n = sizeof(arr) / sizeof(arr[0]);
-    struct Node* head = circularLinkedList(arr, n);
-    head = sort(head);
-    printLinkedList(head);
+    
+    // Create circular linked list
+    head = circularLinkedList(arr, n);
+    
+    while (true) {
+        cout << "\n--- Circular Linked List Menu ---\n";
+        cout << "1. Insert at Beginning\n";
+        cout << "2. Insert at End\n";
+        cout << "3. Delete at Beginning\n";
+        cout << "4. Traverse\n";
+        cout << "5. Search\n";
+        cout << "6. Sort\n";
+        cout << "7. Update\n";
+        cout << "8. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                cout << "Enter value to insert at beginning: ";
+                cin >> value;
+                insertAtBeginning(head, value);
+                break;
+            case 2:
+                cout << "Enter value to insert at end: ";
+                cin >> value;
+                insertAtEnd(head, value);
+                break;
+            case 3:
+                deleteAtBeginning(head);
+                cout << "Deleted node at beginning.\n";
+                break;
+            case 4:
+                cout << "Circular Linked List: ";
+                traverse(head);
+                break;
+            case 5:
+                cout << "Enter value to search: ";
+                cin >> searchValue;
+                if (search(head, searchValue))
+                    cout << "Value found.\n";
+                else
+                    cout << "Value not found.\n";
+                break;
+            case 6:
+                sortList(head);
+                cout << "List sorted.\n";
+                break;
+            case 7:
+                cout << "Enter old value to update: ";
+                cin >> oldValue;
+                cout << "Enter new value: ";
+                cin >> newValue;
+                update(head, oldValue, newValue);
+                break;
+            case 8:
+                cout << "Exiting...\n";
+                exit(0);
+            default:
+                cout << "Invalid choice! Please try again.\n";
+        }
+    }
+    
     return 0;
 }

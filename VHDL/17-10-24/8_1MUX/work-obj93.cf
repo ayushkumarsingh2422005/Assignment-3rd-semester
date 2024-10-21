@@ -1,0 +1,10 @@
+v 3
+file . "tb_8to1mux.vhdl" "20241017114050.000" "20241017171337.633":
+  entity tb_8to1mux at 1( 0) + 0 on 15;
+  architecture behavioral of tb_8to1mux at 7( 88) + 0 on 16;
+file . "4to1mux.vhdl" "20241017110046.000" "20241017171337.606":
+  entity mux_4bit at 1( 0) + 0 on 11;
+  architecture rlt of mux_4bit at 15( 297) + 0 on 12;
+file . "8to1mux.vhdl" "20241017112150.000" "20241017171337.619":
+  entity mux_8bit at 1( 0) + 0 on 13;
+  architecture rlt of mux_8bit at 20( 437) + 0 on 14;

@@ -1,0 +1,4 @@
+v 3
+file . "4to1mux.vhdl" "20241017110046.000" "20241017173950.267":
+  entity mux_4bit at 1( 0) + 0 on 29;
+  architecture rlt of mux_4bit at 15( 297) + 0 on 30;
