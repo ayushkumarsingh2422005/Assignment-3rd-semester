@@ -2,6 +2,7 @@
 #include <queue>
 #include <stack>
 #include <vector>
+#include <algorithm>
 // #include <priori
 using namespace std;
 
@@ -89,96 +90,46 @@ void dfs(vector<vector<int>> adj_list, int start) {
     vector<int> visited(adj_list.size());
     dfsHelper(adj_list, visited, start);
 }
-// void prims(vector<vector<int>>& adj_list, int start) {
-//     struct Node {
-//         int wt;
-//         int data;
-//         int parent;
-//         bool operator<(const Node& other) const {
-//             return wt > other.wt;  // For a min-heap, use `wt > other.wt`
-//         }
-//     };
-//     priority_queue<Node> pq;
-//     vector<int> visited(adj_list.size());
-//     vector<Node> mst;
-//     pq.push({0, start, -1});
-//     while (!pq.empty()) {
-//         Node node = pq.top();
-//         pq.pop();
-//         visited[node.data] = 1;
-//         for (int i : adj_list[node.data])
-//         {
-//             if (visited[i]!=1)
-//             {
-//                 pq.push({})
-//             }
-            
-//         }
-        
-//     }
-// }
 
-// int main() {
-//     int graph_matrix[][8] = {
-//         {0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 1, 0, 1, 0, 0, 0},
-//         {0, 1, 0, 1, 0, 0, 0, 0}, {0, 0, 1, 0, 1, 1, 0, 0},
-//         {0, 1, 0, 1, 0, 1, 0, 0}, {0, 0, 0, 1, 1, 0, 1, 1},
-//         {0, 0, 0, 0, 0, 1, 0, 1}, {0, 0, 0, 0, 0, 1, 1, 0},
-//     };
-//     vector<vector<int>> adj_list = matrixToList(graph_matrix);
-//     BFS(adj_list, 5);
-//     cout << endl;
-//     DFS(adj_list, 5);
-//     cout << endl;
-//     dfs(adj_list, 5);
-// }
-
-// Function to convert adjacency matrix to adjacency list
-vector<pair<int, int>>* convertMatrixToList(int adjMatrix[][4], int n) {
-    // Create an adjacency list as an array of vectors of pairs
-    vector<pair<int, int>>* adjList = new vector<pair<int, int>>[n];
-
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            if (adjMatrix[i][j] != 0) { // Check for an edge with non-zero weight
-                adjList[i].push_back({j, adjMatrix[i][j]});
-            }
-        }
-    }
-
-    return adjList;
-}
-
-// Function to print the adjacency list
-void printAdjList(vector<pair<int, int>>* adjList, int n) {
-    for (int i = 0; i < n; i++) {
-        cout << "Index " << i + 1 << ": ";
-        for (const auto& pair : adjList[i]) {
-            cout << "{" << pair.first + 1 << ", " << pair.second << "} ";
-        }
-        cout << endl;
-    }
-}
 
 int main() {
-    // Define the adjacency matrix
-    int adjMatrix[4][4] = {
-        {0, 2, 3, 0},
-        {2, 0, 4, 5},
-        {3, 4, 0, 6},
-        {0, 5, 6, 0}
+    // Dummy graph represented as an adjacency matrix
+    int graph[8][8] = {
+        {0, 1, 1, 0, 0, 0, 0, 0}, // Edges from node 0 to 1 and 2
+        {1, 0, 0, 1, 1, 0, 0, 0}, // Edges from node 1 to 0, 3, and 4
+        {1, 0, 0, 0, 1, 1, 0, 0}, // Edges from node 2 to 0, 4, and 5
+        {0, 1, 0, 0, 0, 0, 1, 0}, // Edge from node 3 to 1 and 6
+        {0, 1, 1, 0, 0, 0, 0, 1}, // Edges from node 4 to 1, 2, and 7
+        {0, 0, 1, 0, 0, 0, 0, 1}, // Edges from node 5 to 2 and 7
+        {0, 0, 0, 1, 0, 0, 0, 0}, // Edge from node 6 to 3
+        {0, 0, 0, 0, 1, 1, 0, 0}  // Edges from node 7 to 4 and 5
     };
 
-    int n = 4; // Number of nodes
+    // Print the graph as an adjacency matrix
+    cout << "Graph as adjacency matrix:" << endl;
+    printGraphMatrix(graph);
 
-    // Convert the adjacency matrix to an adjacency list
-    vector<pair<int, int>>* adjList = convertMatrixToList(adjMatrix, n);
+    // Convert adjacency matrix to adjacency list
+    vector<vector<int>> adj_list = matrixToList(graph);
 
-    // Print the adjacency list
-    printAdjList(adjList, n);
+    // Print the adjacency list representation
+    cout << "Graph as adjacency list:" << endl;
+    printAdjacencyList(adj_list);
 
-    // Free the dynamically allocated memory
-    delete[] adjList;
+    // Perform BFS traversal
+    cout << "BFS traversal starting from node 0:" << endl;
+    BFS(adj_list, 0);
+    cout << endl;
+
+    // Perform iterative DFS traversal
+    cout << "Iterative DFS traversal starting from node 0:" << endl;
+    DFS(adj_list, 0);
+    cout << endl;
+
+    // Perform recursive DFS traversal
+    cout << "Recursive DFS traversal starting from node 0:" << endl;
+    dfs(adj_list, 0);
+    cout << endl;
 
     return 0;
 }
