@@ -1,0 +1,19 @@
+v 3
+file . "nand3.vhdl" "20241114110718.000" "20241121141900.338":
+  entity nand3_gate at 3( 17) + 0 on 57;
+  architecture behavior of nand3_gate at 15( 232) + 0 on 58;
+file . "tb_jkflipflop.vhdl" "20241114120116.000" "20241121141900.379":
+  entity tb_jkflipflop at 1( 0) + 0 on 61;
+  architecture behavior of tb_jkflipflop at 7( 94) + 0 on 62;
+file . "srflipflop.vhdl" "20241114114908.000" "20241114171958.495":
+  entity sr_flip_flop at 1( 0) + 0 on 29;
+  architecture structural of sr_flip_flop at 14( 277) + 0 on 30;
+file . "tb_srflipflop.vhdl" "20241114114956.000" "20241114171958.513":
+  entity tb_srflipflop at 1( 0) + 0 on 31;
+  architecture behavior of tb_srflipflop at 7( 94) + 0 on 32;
+file . "nand2.vhdl" "20241114110706.000" "20241121141900.318":
+  entity nand2_gate at 3( 17) + 0 on 55;
+  architecture behavior of nand2_gate at 14( 205) + 0 on 56;
+file . "jkflipflop.vhdl" "20241114115442.000" "20241121141900.359":
+  entity jk_flip_flop at 1( 0) + 0 on 59;
+  architecture structural of jk_flip_flop at 14( 277) + 0 on 60;

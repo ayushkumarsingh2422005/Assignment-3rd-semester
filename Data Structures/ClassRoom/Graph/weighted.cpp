@@ -108,65 +108,94 @@ struct PrimsNode {
     }
 };
 
-// void prims(vector<vector<pair<int, int>>> adj_list, int start) {
-//     priority_queue<PrimsNode> que;
-//     vector<int> visited(adj_list.size(), 0);
-//     que.push({start, -1, -1});
-//     while (!que.empty()) {
-//         PrimsNode pn = que.top();
-//         cout << pn.n << " -> " << pn.p << " : " << pn.wt << endl;
-//         que.pop();
-//         visited[pn.n] = 1;
-//         for (pair<int, int> p : adj_list[pn.n]) {
-//             if (visited[p.first]!=1) {
-//                 que.push({p.first, pn.n, p.second});
-//             }
-//         }
-//     }
-// }
-
-void prims(vector<vector<pair<int, int>>>& adj_list, int start) {
-    priority_queue<PrimsNode> que; // Min-heap
-    vector<int> visited(adj_list.size(), 0); // Visited array
-    vector<pair<int, int>> mst_edges;       // To store MST edges
-    int mst_cost = 0;                       // To track total MST cost
-
-    // Start with the initial node (weight 0, no parent)
-    que.push({start, -1, 0});
-
+void prims(vector<vector<pair<int, int>>> adj_list, int start) {
+    priority_queue<PrimsNode> que;
+    vector<int> visited(adj_list.size(), 0);
+    que.push({start, -1, -1});
     while (!que.empty()) {
         PrimsNode pn = que.top();
         que.pop();
-
-        // If the node is already visited, skip it
         if (visited[pn.n]) continue;
-
-        visited[pn.n] = 1; // Mark as visited
-        mst_cost += pn.wt;
-
-        // If the edge has a valid parent, add it to MST
         if (pn.p != -1) {
-            mst_edges.push_back({pn.p, pn.n});
+            cout << pn.n << " -> " << pn.p << " : " << pn.wt << endl;
         }
 
-        // Traverse adjacent nodes
-        for (auto& edge : adj_list[pn.n]) {
-            int neighbor = edge.first;
-            int weight = edge.second;
+        visited[pn.n] = 1;
+        for (pair<int, int> p : adj_list[pn.n]) {
+            if (visited[p.first] != 1) {
+                que.push({p.first, pn.n, p.second});
+            }
+        }
+    }
+}
 
-            // Add only unvisited nodes to the queue
-            if (!visited[neighbor]) {
-                que.push({neighbor, pn.n, weight});
+struct DisjointSet {
+    vector<int> parent;
+    vector<int> rank;
+    DisjointSet(int n) {
+        parent.resize(n);
+        rank.resize(n, 0);
+        for (int i = 0; i < n; ++i) {
+            parent[i] = i;  // Set each node as its own parent initially
+        }
+    }
+    int ultimateParent(int n) {
+        if (parent[n] == n) {
+            return n;
+        }
+        return parent[n] = ultimateParent(parent[n]);
+    }
+    void unionByRank(int i, int j) {
+        int rootI = ultimateParent(i);  // Find the root of i
+        int rootJ = ultimateParent(j);  // Find the root of j
+
+        if (rootI != rootJ) {  // Only union if they are different sets
+            if (rank[rootI] > rank[rootJ]) {
+                parent[rootJ] = rootI;
+            } else if (rank[rootI] < rank[rootJ]) {
+                parent[rootI] = rootJ;
+            } else {
+                parent[rootJ] = rootI;
+                rank[rootI]++;  // Increase rank if both have the same rank
+            }
+        }
+    }
+};
+
+struct KruskalNode {
+    int node;
+    int connectedNode;
+    int weight;
+    bool operator<(const KruskalNode &other) const {
+        return weight > other.weight;  // Min-heap behavior
+    }
+};
+
+void kruskal(vector<vector<pair<int, int>>> adj_list, int start) {
+    priority_queue<KruskalNode> edges;
+    DisjointSet ds(adj_list.size());
+    for (int i = 0; i < adj_list.size(); i++) {
+        // auto k = adj_list[i];
+        for (auto &j : adj_list[i]) {
+            if (i < j.first) {
+                edges.push({i, j.first, j.second});  // i -> j
             }
         }
     }
 
-    // Output the MST edges and total cost
-    cout << "MST Edges:\n";
-    for (auto& edge : mst_edges) {
-        cout << edge.first << " - " << edge.second << "\n";
+    while (!edges.empty()) {
+        KruskalNode edge = edges.top();
+        edges.pop();
+        // cout << edge.node << " - " << edge.connectedNode << " : " <<
+        // edge.weight
+        //      << endl;
+        if (ds.ultimateParent(edge.node) !=
+            ds.ultimateParent(edge.connectedNode)) {
+            ds.unionByRank(edge.node, edge.connectedNode);
+            cout << edge.node << " - " << edge.connectedNode << " : "
+                 << edge.weight << endl;
+        }
     }
-    cout << "Total MST Cost: " << mst_cost << "\n";
 }
 
 int main() {
@@ -186,8 +215,8 @@ int main() {
     };
 
     // Print the graph as an adjacency matrix
-    cout << "Graph as adjacency matrix (with weights):" << endl;
-    printGraphMatrix(graph);
+    // cout << "Graph as adjacency matrix (with weights):" << endl;
+    // printGraphMatrix(graph);
 
     // Convert adjacency matrix to adjacency list
     vector<vector<pair<int, int>>> adj_list = matrixToList(graph);
@@ -197,21 +226,23 @@ int main() {
     printAdjacencyList(adj_list);
 
     // Perform BFS traversal
-    cout << "BFS traversal starting from node 0:" << endl;
-    BFS(adj_list, 0);
-    cout << endl;
+    // cout << "BFS traversal starting from node 0:" << endl;
+    // BFS(adj_list, 0);
+    // cout << endl;
 
     // Perform iterative DFS traversal
-    cout << "Iterative DFS traversal starting from node 0:" << endl;
-    DFS(adj_list, 0);
-    cout << endl;
+    // cout << "Iterative DFS traversal starting from node 0:" << endl;
+    // DFS(adj_list, 0);
+    // cout << endl;
 
     // Perform recursive DFS traversal
-    cout << "Recursive DFS traversal starting from node 0:" << endl;
-    dfs(adj_list, 0);
-    cout << endl;
+    // cout << "Recursive DFS traversal starting from node 0:" << endl;
+    // dfs(adj_list, 0);
+    // cout << endl;
 
     prims(adj_list, 0);
+    cout << endl;
+    kruskal(adj_list, 0);
 
     return 0;
 }
