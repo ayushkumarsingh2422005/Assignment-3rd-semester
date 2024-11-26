@@ -79,8 +79,7 @@ void DFS(vector<vector<pair<int, int>>> adj_list, int start) {
 }
 
 // Recursive DFS helper
-void dfsHelper(vector<vector<pair<int, int>>> &adj_list, vector<int> &visited,
-               int start) {
+void dfsHelper(vector<vector<pair<int, int>>> &adj_list, vector<int> &visited, int start) {
     if (visited[start] == 1) {
         return;
     }
@@ -198,6 +197,35 @@ void kruskal(vector<vector<pair<int, int>>> adj_list, int start) {
     }
 }
 
+struct dijkstraNode {
+    int ele;
+    int wt;
+    bool operator<(const dijkstraNode &other) const {
+        return wt > other.wt;  // Min-heap behavior
+    }
+};
+void dijkstra(vector<vector<pair<int, int>>> adj_list, int start) {
+    vector<int> minWt(adj_list.size(), INT32_MAX);
+    priority_queue<dijkstraNode> que;
+
+    que.push({start, 0});
+    minWt[start] = 0;
+
+    while (!que.empty()) {
+        dijkstraNode node = que.top();
+        que.pop();
+        for (auto i : adj_list[node.ele]) {
+            if (minWt[i.first] > i.second + minWt[node.ele]) {
+                minWt[i.first] = i.second + minWt[node.ele];
+                que.push({i.first, i.second + minWt[node.ele]});
+            }
+        }
+    }
+
+    for (int i = 0; i < minWt.size(); i++) {
+        cout << i << " -> " << minWt[i] << endl;
+    }
+}
 int main() {
     // Fixed weighted graph represented as an adjacency matrix
     int graph[8][8] = {
@@ -240,9 +268,11 @@ int main() {
     // dfs(adj_list, 0);
     // cout << endl;
 
-    prims(adj_list, 0);
-    cout << endl;
-    kruskal(adj_list, 0);
+    // prims(adj_list, 0);
+    // cout << endl;
+    // kruskal(adj_list, 0);
+
+    dijkstra(adj_list, 0);
 
     return 0;
 }
