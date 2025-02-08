@@ -174,7 +174,6 @@ void kruskal(vector<vector<pair<int, int>>> adj_list, int start) {
     priority_queue<KruskalNode> edges;
     DisjointSet ds(adj_list.size());
     for (int i = 0; i < adj_list.size(); i++) {
-        // auto k = adj_list[i];
         for (auto &j : adj_list[i]) {
             if (i < j.first) {
                 edges.push({i, j.first, j.second});  // i -> j
@@ -185,9 +184,6 @@ void kruskal(vector<vector<pair<int, int>>> adj_list, int start) {
     while (!edges.empty()) {
         KruskalNode edge = edges.top();
         edges.pop();
-        // cout << edge.node << " - " << edge.connectedNode << " : " <<
-        // edge.weight
-        //      << endl;
         if (ds.ultimateParent(edge.node) !=
             ds.ultimateParent(edge.connectedNode)) {
             ds.unionByRank(edge.node, edge.connectedNode);
