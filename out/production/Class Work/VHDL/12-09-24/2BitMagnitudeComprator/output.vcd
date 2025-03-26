@@ -1,0 +1,71 @@
+$date
+  Thu Oct 17 14:07:25 2024
+$end
+$version
+  GHDL v0
+$end
+$timescale
+  1 fs
+$end
+$var reg 2 ! a[1:0] $end
+$var reg 2 " b[1:0] $end
+$var reg 1 # a_gt_b $end
+$var reg 1 $ a_lt_b $end
+$var reg 1 % a_eq_b $end
+$scope module uut $end
+$var reg 2 & a[1:0] $end
+$var reg 2 ' b[1:0] $end
+$var reg 1 ( a_gt_b $end
+$var reg 1 ) a_lt_b $end
+$var reg 1 * a_eq_b $end
+$upscope $end
+$enddefinitions $end
+#0
+b00 !
+b00 "
+0#
+0$
+1%
+b00 &
+b00 '
+0(
+0)
+1*
+#10000000
+b01 !
+1#
+0%
+b01 &
+1(
+0*
+#20000000
+b00 !
+b01 "
+0#
+1$
+b00 &
+b01 '
+0(
+1)
+#30000000
+b10 !
+1#
+0$
+b10 &
+1(
+0)
+#40000000
+b11 !
+b10 "
+b11 &
+b10 '
+#50000000
+b10 !
+b11 "
+0#
+1$
+b10 &
+b11 '
+0(
+1)
+#60000000

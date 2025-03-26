@@ -1,0 +1,13 @@
+v 3
+file . "tb_dflipflop.vhdl" "20241114112650.000" "20241121142001.604":
+  entity tb_dflipflop at 3( 24) + 0 on 99;
+  architecture behavior of tb_dflipflop at 9( 116) + 0 on 100;
+file . "nand2.vhdl" "20241114110706.000" "20241121142001.544":
+  entity nand2_gate at 3( 17) + 0 on 93;
+  architecture behavior of nand2_gate at 14( 205) + 0 on 94;
+file . "nand3.vhdl" "20241114110718.000" "20241121142001.561":
+  entity nand3_gate at 3( 17) + 0 on 95;
+  architecture behavior of nand3_gate at 15( 232) + 0 on 96;
+file . "dflipflop.vhdl" "20241114112728.000" "20241121142001.582":
+  entity d_flip_flop at 1( 0) + 0 on 97;
+  architecture structural of d_flip_flop at 13( 246) + 0 on 98;

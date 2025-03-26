@@ -1,0 +1,48 @@
+$date
+  Thu Aug 08 15:47:43 2024
+$end
+$version
+  GHDL v0
+$end
+$timescale
+  1 fs
+$end
+$var reg 1 ! a2 $end
+$var reg 1 " b2 $end
+$var reg 1 # c2 $end
+$scope module xor3_label $end
+$var reg 1 $ a $end
+$var reg 1 % b $end
+$var reg 1 & c $end
+$upscope $end
+$enddefinitions $end
+#0
+U!
+U"
+U#
+U$
+U%
+U&
+#10000000
+0!
+0"
+0#
+0$
+0%
+0&
+#20000000
+1"
+1#
+1%
+1&
+#30000000
+1!
+0"
+1$
+0%
+#40000000
+1"
+0#
+1%
+0&
+#50000000

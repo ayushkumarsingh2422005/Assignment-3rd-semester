@@ -1,0 +1,7 @@
+v 3
+file . "bool_tb.vhdl" "20240808102506.000" "20240808155507.406":
+  entity bool_tb at 1( 0) + 0 on 15;
+  architecture bool_tb_arch of bool_tb at 7( 82) + 0 on 16;
+file . "bool.vhdl" "20240808102454.000" "20240808155507.384":
+  entity bool at 1( 0) + 0 on 13;
+  architecture bool_arch of bool at 11( 157) + 0 on 14;

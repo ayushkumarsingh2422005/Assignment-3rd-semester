@@ -1,0 +1,52 @@
+$date
+  Thu Sep 19 17:27:01 2024
+$end
+$version
+  GHDL v0
+$end
+$timescale
+  1 fs
+$end
+$var reg 1 ! a $end
+$var reg 1 " b $end
+$var reg 4 # y[3:0] $end
+$scope module uut $end
+$var reg 1 $ a $end
+$var reg 1 % b $end
+$var reg 1 & d0 $end
+$var reg 1 ' d1 $end
+$var reg 1 ( d2 $end
+$var reg 1 ) d3 $end
+$upscope $end
+$enddefinitions $end
+#0
+0!
+0"
+b0001 #
+0$
+0%
+1&
+0'
+0(
+0)
+#10000000
+1!
+b0100 #
+1$
+0&
+1(
+#20000000
+0!
+1"
+b0010 #
+0$
+1%
+1'
+0(
+#30000000
+1!
+b1000 #
+1$
+0'
+1)
+#40000000

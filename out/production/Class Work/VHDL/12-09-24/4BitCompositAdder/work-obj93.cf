@@ -1,0 +1,13 @@
+v 3
+file . "tb_four_bit_composite_adder.vhdl" "20241017081640.000" "20241017140607.950":
+  entity tb_four_bit_composite_adder at 1( 0) + 0 on 49;
+  architecture tb of tb_four_bit_composite_adder at 9( 194) + 0 on 50;
+file . "fulladder.vhdl" "20240822103530.000" "20241017140607.925":
+  entity fulladder at 1( 0) + 0 on 45;
+  architecture rtl of fulladder at 14( 269) + 0 on 46;
+file . "halfadder.vhdl" "20240822102744.000" "20241017140607.913":
+  entity halfadder at 1( 0) + 0 on 43;
+  architecture rtl of halfadder at 13( 238) + 0 on 44;
+file . "four_bit_composit_adder.vhdl" "20240912105740.000" "20241017140607.938":
+  entity four_bit_composite_adder at 1( 0) + 0 on 47;
+  architecture behavioral of four_bit_composite_adder at 15( 381) + 0 on 48;

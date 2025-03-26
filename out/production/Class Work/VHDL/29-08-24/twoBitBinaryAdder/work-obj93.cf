@@ -1,0 +1,13 @@
+v 3
+file . "fulladder.vhdl" "20240829105538.000" "20240829164831.033":
+  entity fulladder at 1( 0) + 0 on 41;
+  architecture rtl of fulladder at 14( 269) + 0 on 42;
+file . "halfadder.vhdl" "20240822102744.000" "20240829164831.019":
+  entity halfadder at 1( 0) + 0 on 39;
+  architecture rtl of halfadder at 13( 238) + 0 on 40;
+file . "twobitadder.vhdl" "20240829111830.000" "20240829164831.056":
+  entity twobitadder at 1( 0) + 0 on 43;
+  architecture rtl of twobitadder at 17( 359) + 0 on 44;
+file . "tb_twobitadder.vhdl" "20240829111756.000" "20240829164831.073":
+  entity tb_twobitadder at 1( 0) + 0 on 45;
+  architecture behavior of tb_twobitadder at 7( 103) + 0 on 46;
