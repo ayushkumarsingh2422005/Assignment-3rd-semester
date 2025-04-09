@@ -1,0 +1,10 @@
+Name,Age,Salary,Department
+JohnDoe,28,50000,Engineering
+JaneSmith,34,60000,Marketing
+AliceJohnson,,55000,Sales
+BobBrown,45,,Engineering
+CharlieDavis,30,70000,Marketing
+EveWhite,29,48000,Sales
+JohnDoe,28,50000,Engineering
+!@#InvalidName,25,40000,HR
+DavidWilson,40,65000,Engineering

@@ -10,14 +10,14 @@
 
 
 #2. Write a Python program that prompts the user to input two numbers and raises a TypeError exception if the inputs are not numerical.
-# try:
-#     a = int(input("enter 1st number : "))
-#     b = int(input("enter 2nd number : "))
-# except ValueError:
-#     print("Error: Please enter valid numerical values")
-#     print("The inputs must be numbers")
-# else:
-#     print(f"Successfully received numbers: {a} and {b}")
+try:
+    a = int(input("enter 1st number : "))
+    b = int(input("enter 2nd number : "))
+except ValueError:
+    print("Error: Please enter valid numerical values")
+    print("The inputs must be numbers")
+else:
+    print(f"Successfully received numbers: {a} and {b}")
     
 #3. Write a Python program that executes an operation on a list and handles an IndexError exception if the index is out of range.
 # lst = [1,2,3,4]

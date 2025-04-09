@@ -1,4 +1,6 @@
+# Start of Selection
 *.txt
 .vscode/
 *.exe
 .clang-format
+node_modules/
